@@ -1,4 +1,3 @@
-import './App.css'
 import logo from './assets/logo.jpg'
 import brownieCoco from './assets/brownieCoco.jpeg'
 import brownieNuts from './assets/BrownieNuts.jpeg'
@@ -6,6 +5,7 @@ import brownieChocolate from './assets/brownieChocolate.jpeg'
 import cremeAvela from './assets/cremeAvela.jpeg'
 import cremePistache from './assets/browniePistache.jpeg'
 import goldenMilk from './assets/goldenMilk.jpeg'
+import { Cookie, Sparkles } from 'lucide-react'
 
 const WHATSAPP = "https://wa.me/5541987997556"
 
@@ -144,7 +144,7 @@ function Hero() {
 function ProductCard({ title, description, image, price, badge, badgeColor }) {
   return (
     <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-[#6b21a8]/10 hover:shadow-xl transition-shadow">
-      <div className="h-48 bg-[#1a0a2e]/5 relative">
+      <div className="h-64 bg-[#1a0a2e]/5 relative">
         {image ? (
           <img src={image} alt={title} className="w-full h-full object-cover" />
         ) : (
@@ -172,24 +172,56 @@ function ProductCard({ title, description, image, price, badge, badgeColor }) {
 
 function Produtos() {
   return (
-    <section id="produtos" className="py-20 px-6 bg-[#f0fdf4]">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-black text-[#1a0a2e] text-center mb-4">
-          Nossos Produtos
-        </h2>
-        <p className="text-center text-gray-500 mb-16 text-lg">
-          100% veganos, feitos com amor e ingredientes selecionados
-        </p>
-        <h3 className="text-2xl font-black text-[#1a0a2e] mb-6"> Brownies</h3>
-        <div className="grid grid-cols-3 gap-6 mb-14">
-          {brownies.map((p, i) => <ProductCard key={i} {...p} />)}
+    <>
+      <div className="h-3 bg-[#f5c518]" />
+      <section id="produtos" className="py-24 px-6 bg-[#f9f5ff]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="inline-block bg-[#16a34a] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
+              Cardápio
+            </span>
+            <h2 className="text-4xl font-black text-[#1a0a2e]">
+              Nossos <span className="text-[#16a34a]">Produtos</span>
+            </h2>
+            <p className="text-lg text-[#7c5fa0] mt-4">
+              Feitos artesanalmente para você comer sem culpa e com muito sabor
+            </p>
+          </div>
+
+          <div className="mb-14">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="bg-[#f5c518] p-2 rounded-xl">
+                <Cookie className="w-5 h-5 text-[#1a0a2e]" />
+              </div>
+              <h3 className="text-2xl font-black text-[#1a0a2e]">
+                Brownies Proteicos
+              </h3>
+              <span className="bg-[#16a34a]/10 text-[#16a34a] text-xs font-black px-3 py-1 rounded-full">
+                Com ou Sem Trigo
+              </span>
+            </div>
+            <div className="grid grid-cols-3 gap-6">
+              {brownies.map((p, i) => <ProductCard key={i} {...p} />)}
+            </div>
+          </div>
+
+          <div>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="bg-[#f5c518] p-2 rounded-xl">
+                <Sparkles className="w-5 h-5 text-white" />
+              </div>
+              <h3 className="text-2xl font-black text-[#1a0a2e]">
+                Cremes e Golden Milk
+              </h3>
+            </div>
+            <div className="grid grid-cols-3 gap-6">
+              {cremes.map((p, i) => <ProductCard key={i} {...p} />)}
+            </div>
+          </div>
+
         </div>
-        <h3 className="text-2xl font-black text-[#1a0a2e] mb-6"> Cremes e Golden Milk</h3>
-        <div className="grid grid-cols-3 gap-6">
-          {cremes.map((p, i) => <ProductCard key={i} {...p} />)}
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
 
