@@ -1,7 +1,7 @@
 import './App.css'
 import logo from './assets/logo.jpg'
 
-const WHATSAPP = "https://wa.me/5511999999999"
+const WHATSAPP = "https://wa.me/5541987997556"
 
  function Header() {
   return (
@@ -66,6 +66,13 @@ function Hero() {
           </a>
         </div>
       </div>
+      <div className="bg-[#6b21a8]/20 rounded-3xl h-[420px] flex items-center justify-center border-4 border-[#f5c518]/20">
+          <div className="text-center">
+            <div className="text-7xl mb-4">🌱</div>
+            <p className="text-white/60 font-bold">Foto em breve</p>
+          </div>
+        </div>
+
     </section>
   )
 }
