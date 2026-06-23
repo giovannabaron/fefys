@@ -1,7 +1,71 @@
 import './App.css'
 import logo from './assets/logo.jpg'
+import brownieCoco from './assets/brownieCoco.jpeg'
+import brownieNuts from './assets/BrownieNuts.jpeg'
+import brownieChocolate from './assets/brownieChocolate.jpeg'
+import cremeAvela from './assets/cremeAvela.jpeg'
+import cremePistache from './assets/browniePistache.jpeg'
+import goldenMilk from './assets/goldenMilk.jpeg'
 
 const WHATSAPP = "https://wa.me/5541987997556"
+
+const brownies = [
+  {
+    title: "Brownie Proteico com Coco",
+    description: "Produzido com Açúcar Mascavo; Cacau Alcalino 50%, Leite de Coco; Chocolate Meio Amargo",
+    image: brownieCoco,
+    price: "R$ 19,00",
+    badge: "Com ou Sem Trigo",
+    badgeColor: "bg-[#6b21a8] text-white"
+  
+  },
+  {
+    title: "Brownie Proteico com Nuts",
+    description: "Produzido com Açúcar Mascavo; Cacau Alcalino 50%, Leite de Coco; Chocolate Meio Amargo, Pistache, Nozes, Semente de abóbora, Avelã e Amêndoas",
+    image: brownieNuts,
+    price: "R$ 19,00",
+    badge: "Com ou Sem Trigo",
+    badgeColor: "bg-[#6b21a8] text-white"
+  
+  },
+  {
+    title: "Brownie Proteico com Chocolate",
+    description: "Produzido com Açúcar Mascavo; Cacau Alcalino 50%, Leite de Coco, Proteína Vegetal, Chocolate Meio Amargo.",
+    image: brownieCoco,
+    price: "R$ 19,00",
+    badge: "Com ou Sem Trigo",
+    badgeColor: "bg-[#6b21a8] text-white"
+  
+  },
+]
+
+const cremes = [
+  {
+    title: "Creme de Avelã",
+    description: "Cremoso, intenso e 100% vegano. O creme de avelã que você sempre quis",
+    image: cremeAvela,
+    price: "R$ 77,00",
+    badge: "Artesanal",
+    badgeColor: "bg-[#f5c518] text-[#1a0a2e]"
+  },
+  {
+    title: "Creme de Pistache Zero Açúcar",
+    description: "Sofisticado, zero açúcar e incrivelmente gostoso — puro pistache vegano",
+    image: cremePistache,
+    price: "R$ 88,00",
+    badge: "Zero Açúcar",
+    badgeColor: "bg-[#16a34a] text-white"
+  },
+  {
+    title: "Golden Milk",
+    description: "Blend anti-inflamatório com cúrcuma, gengibre e especiarias — saúde que sabe bem",
+    image: goldenMilk,
+    price: "R$ 45,00",
+    badge: "Anti-inflamatório",
+    badgeColor: "bg-[#6b21a8] text-white"
+  }
+]
+
 
  function Header() {
   return (
@@ -76,11 +140,66 @@ function Hero() {
     </section>
   )
 }
+
+function ProductCard({ title, description, image, price, badge, badgeColor }) {
+  return (
+    <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-[#6b21a8]/10 hover:shadow-xl transition-shadow">
+      <div className="h-48 bg-[#1a0a2e]/5 relative">
+        {image ? (
+          <img src={image} alt={title} className="w-full h-full object-cover" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <span className="text-5xl">🍫</span>
+          </div>
+        )}
+        <span className={`absolute top-3 left-3 text-xs font-black px-3 py-1 rounded-full ${badgeColor}`}>
+          {badge}
+        </span>
+      </div>
+      <div className="p-5">
+        <h3 className="font-black text-[#1a0a2e] text-lg mb-1">{title}</h3>
+        <p className="text-sm text-gray-500 mb-4 leading-relaxed">{description}</p>
+        <div className="flex items-center justify-between">
+          <span className="text-2xl font-black text-[#6b21a8]">{price}</span>
+          <a href={WHATSAPP} className="bg-[#f5c518] text-[#1a0a2e] px-4 py-2 rounded-full text-sm font-black hover:bg-[#e6b800]">
+            Pedir
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Produtos() {
+  return (
+    <section id="produtos" className="py-20 px-6 bg-[#f0fdf4]">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl font-black text-[#1a0a2e] text-center mb-4">
+          Nossos Produtos
+        </h2>
+        <p className="text-center text-gray-500 mb-16 text-lg">
+          100% veganos, feitos com amor e ingredientes selecionados
+        </p>
+        <h3 className="text-2xl font-black text-[#1a0a2e] mb-6"> Brownies</h3>
+        <div className="grid grid-cols-3 gap-6 mb-14">
+          {brownies.map((p, i) => <ProductCard key={i} {...p} />)}
+        </div>
+        <h3 className="text-2xl font-black text-[#1a0a2e] mb-6"> Cremes e Golden Milk</h3>
+        <div className="grid grid-cols-3 gap-6">
+          {cremes.map((p, i) => <ProductCard key={i} {...p} />)}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
 function App() {
   return (
     <div className="min-h-screen bg-white font-sans">
       <Header />
       <Hero />
+      <Produtos />
     </div>
   )
 }
