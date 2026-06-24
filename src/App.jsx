@@ -2,10 +2,11 @@ import logo from './assets/logo.jpg'
 import brownieCoco from './assets/brownieCoco.jpeg'
 import brownieNuts from './assets/BrownieNuts.jpeg'
 import brownieChocolate from './assets/brownieChocolate.jpeg'
+import browniePistache from './assets/browniePistache.jpeg'
 import cremeAvela from './assets/cremeAvela.jpeg'
-import cremePistache from './assets/browniePistache.jpeg'
+import cremePistache from './assets/cremePistache.jpeg'
 import goldenMilk from './assets/goldenMilk.jpeg'
-import { Cookie, Sparkles } from 'lucide-react'
+import { Cookie, Star, Package, Truck, MessageCircle, ChevronRight } from 'lucide-react'
 
 const WHATSAPP = "https://wa.me/5541987997556"
 
@@ -31,8 +32,18 @@ const brownies = [
   {
     title: "Brownie Proteico com Chocolate",
     description: "Produzido com Açúcar Mascavo; Cacau Alcalino 50%, Leite de Coco, Proteína Vegetal, Chocolate Meio Amargo.",
-    image: brownieCoco,
+    image: brownieChocolate,
     price: "R$ 19,00",
+    badge: "Com ou Sem Trigo",
+    badgeColor: "bg-[#6b21a8] text-white"
+  
+  },
+
+  {
+    title: "Brownie Proteico com Nutella e Pistache",
+    description: "Produzido com Açúcar Mascavo; Cacau Alcalino 50%, Leite de Coco; Proteína Vegetal; Chocolate Meio Amargo.",
+    image: browniePistache,
+    price: "R$ 22,00",
     badge: "Com ou Sem Trigo",
     badgeColor: "bg-[#6b21a8] text-white"
   
@@ -208,7 +219,7 @@ function Produtos() {
           <div>
             <div className="flex items-center gap-3 mb-8">
               <div className="bg-[#f5c518] p-2 rounded-xl">
-                <Sparkles className="w-5 h-5 text-white" />
+                <Star className="w-5 h-5 text-[#1a0a2e]" />
               </div>
               <h3 className="text-2xl font-black text-[#1a0a2e]">
                 Cremes e Golden Milk
@@ -225,6 +236,114 @@ function Produtos() {
   )
 }
 
+function ComoFunciona(){
+  return (
+    <section id="comofunciona" className="py-24 px-6 bg-white">
+      <div className='max-w-7x1 mx auto'>
+        <div className="text-center mb-16">
+          <span className="inline-block bg-[#6b21a8] text-white text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
+            Como Funciona
+          </span>
+          <h2 className="text-4xl font-black text-[#1a0a2e]">
+            Receba em <span className="text-[#16a34a]">casa</span> ou <span className="text-[#6b21a8]">retire</span>
+            </h2>
+            <p className = "text-lg text-[#7c5fa0] mt-4">Simples, rápido e feito especialmente pra você</p>
+        </div>
+
+        {/* Sob Encomenda */}
+         <div className="grid grid-cols-3 gap-6">
+          <div className="bg-gradient-to-br from-[#fefce8] to-[#fef9c3] rounded-3xl p-8 border-2 border-[#f5c518]/30 hover:border-[#f5c518]/50 hover:shadow-xl transition-all">
+            <div className="bg-[#f5c518] text-[#1a0a2e] w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+              <Package className="w-7 h-7" />
+            </div>
+            <h3 className="text-xl font-black text-[#1a0a2e] mb-3">Sob Encomenda</h3>
+            <p className="text-[#b45309] text-sm leading-relaxed mb-4">
+              Todos os produtos são feitos <strong>fresquinhos</strong> especialmente para você!
+            </p>
+            <ul className="text-xs text-[#b45309]/80 space-y-2">
+              <li className="flex items-start gap-2">
+                <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <span>Peça com 2-3 dias de antecedência</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <span>Sem estoque — sempre fresquinho!</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <span>Pedidos urgentes: consulte no WhatsApp</span>
+              </li>
+            </ul>
+          </div>
+
+
+    {/* Entrega */}
+     <div className="bg-gradient-to-br from-[#f0fdf4] to-[#dcfce7] rounded-3xl p-8 border-2 border-[#16a34a]/20 hover:border-[#16a34a]/40 hover:shadow-xl transition-all">
+            <div className="bg-[#16a34a] text-white w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+              <Truck className="w-7 h-7" />
+            </div>
+            <h3 className="text-xl font-black text-[#1a0a2e] mb-3">Entrega ou Retirada</h3>
+            <p className="text-[#166534] text-sm leading-relaxed mb-4">
+              Receba em <strong>Colombo e região</strong> ou retire no local.
+            </p>
+            <ul className="text-xs text-[#166534]/80 space-y-2">
+              <li className="flex items-start gap-2">
+                <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <span>Entrega via Uber, 99, motoboy ou própria</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <span>Retirada no local (endereço via WhatsApp)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <ChevronRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <span>Taxa de entrega calculada no pedido</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Como Pedir */}
+          <div className="bg-gradient-to-br from-[#faf5ff] to-[#f3eeff] rounded-3xl p-8 border-2 border-[#6b21a8]/20 hover:border-[#6b21a8]/40 hover:shadow-xl transition-all">
+            <div className="bg-[#6b21a8] text-white w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+              <MessageCircle className="w-7 h-7" />
+            </div>
+            <h3 className="text-xl font-black text-[#1a0a2e] mb-3">Como Pedir</h3>
+            <p className="text-[#6b21a8] text-sm leading-relaxed mb-4">
+              Simples e rápido pelo <strong>WhatsApp</strong>!
+            </p>
+            
+              <a href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-[#25D366] text-white px-4 py-2.5 rounded-full text-sm font-black hover:bg-[#20BA5A] transition-all"
+            >
+              <MessageCircle className="w-4 h-4" />
+              Fazer Pedido Agora
+            </a>
+            <p className="text-xs text-[#6b21a8]/70 mt-4">
+                Respondo rápido e te ajudo com tudo! 💜
+              </p>
+          </div>
+        </div>
+
+        <div className="mt-16 bg-[#1a0a2e] rounded-3xl p-10 text-center">
+          <h3 className="text-2xl font-black text-white mb-4">
+            Atendemos <span className="text-[#f5c518]">Colombo e Região</span>
+          </h3>
+          <p className="text-white/70 mb-6">Levamos nossas delícias veganas até você!</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {['Colombo', 'Bacacheri', 'Atuba', 'Cajuru', 'Capão da Imbuia', 'Jardim das Américas', 'Santa Cândida', 'Boa Vista', 'Cachoeira', 'Tarumã'].map((bairro) => (
+              <span key={bairro} className="bg-white/10 border border-white/20 text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-[#16a34a] hover:border-[#16a34a] transition-all">
+                {bairro}
+              </span>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  )
+}
 
 function App() {
   return (
@@ -232,6 +351,7 @@ function App() {
       <Header />
       <Hero />
       <Produtos />
+      <ComoFunciona/>
     </div>
   )
 }
