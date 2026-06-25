@@ -6,7 +6,7 @@ import browniePistache from './assets/browniePistache.jpeg'
 import cremeAvela from './assets/cremeAvela.jpeg'
 import cremePistache from './assets/cremePistache.jpeg'
 import goldenMilk from './assets/goldenMilk.jpeg'
-import { Cookie, Star, Package, Truck, MessageCircle, ChevronRight } from 'lucide-react'
+import { Cookie, Star, Package, Truck, MessageCircle, ChevronRight, Leaf, Heart, ShoppingBag} from 'lucide-react'
 
 const WHATSAPP = "https://wa.me/5541987997556"
 
@@ -77,6 +77,30 @@ const cremes = [
   }
 ]
 
+const valores = [
+  {
+    icon: <Leaf className="w-9 h-9" />,
+    title: "100% Plant-Based",
+    description: "Todos os nossos produtos são feitos com ingredientes de origem vegetal",
+    color: "text-[#16a34a]",
+    bg: "bg-[#dcfce7]"
+  },
+  {
+    icon: <Heart className="w-9 h-9" />,
+    title: "Feito com Amor",
+    description: "Cada item preparado com cuidado e dedicação especial para você",
+    color: "text-[#6b21a8]",
+    bg: "bg-[#f3eeff]"
+  },
+  {
+    icon: <ShoppingBag className="w-9 h-9" />,
+    title: "Sem Culpa, Sempre",
+    description: "Nutritivos, proteicos e deliciosos — coma à vontade sem se preocupar",
+    color: "text-[#b45309]",
+    bg: "bg-[#fefce8]"
+  }
+];
+
 
  function Header() {
   return (
@@ -118,6 +142,32 @@ const cremes = [
   )
 }
   
+function Valores(){
+  return (
+    <>
+    <section className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
+            {valores.map((value, index) => (
+              <div
+                key={index}
+                className="p-8 rounded-3xl border-2 border-transparent hover:border-[#6b21a8]/20 hover:shadow-xl transition-all group"
+                style={{ background: "linear-gradient(135deg, #faf7ff 0%, #f0fdf4 100%)" }}
+              >
+                <div className={`${value.bg} ${value.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  {value.icon}
+                </div>
+                <h3 className="text-xl font-black text-[#1a0a2e] mb-3">{value.title}</h3>
+                <p className="text-[#7c5fa0] leading-relaxed">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <div className="h-3 bg-[#f5c518]" />
+      </>
+  )
+}
 
 function Hero() {
   return (
@@ -144,7 +194,7 @@ function Hero() {
       <div className="bg-[#6b21a8]/20 rounded-3xl h-[420px] flex items-center justify-center border-4 border-[#f5c518]/20">
           <div className="text-center">
             <div className="text-7xl mb-4">🌱</div>
-            <p className="text-white/60 font-bold">Foto em breve</p>
+            
           </div>
         </div>
 
@@ -345,13 +395,79 @@ function ComoFunciona(){
   )
 }
 
+function NossaHistoria(){
+  return (
+    <>
+   <div className="h-3 bg-[#6b21a8]" />
+      <section id="nossahistoria" className="py-24 px-6 bg-[#1a0a2e] relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-[#6b21a8]/30 blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-[#16a34a]/20 blur-3xl translate-x-1/2 translate-y-1/2" />
+
+         <div className="relative max-w-7xl mx-auto grid grid-cols-2 gap-16 items-center">
+          <div className="relative">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-[#f5c518]/30 aspect-[4/5] bg-[#6b21a8]/20 flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-7xl mb-4">👩‍🍳</div>
+                <p className="text-white/60 font-bold">Foto em breve</p>
+              </div>
+            </div>
+            <div className="absolute -bottom-6 -right-6 bg-[#f5c518] text-[#1a0a2e] rounded-2xl p-5 shadow-2xl max-w-[200px]">
+              <p className="font-black text-3xl leading-none">+6</p>
+              <p className="font-bold text-sm mt-1">anos transformando vidas com comida de verdade</p>
+            </div>
+          </div>
+
+          <div>
+            <span className="inline-block bg-[#f5c518] text-[#1a0a2e] text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+              Nossa História
+            </span>
+            <h2 className="text-4xl font-black text-white mb-8 leading-tight">
+              Nascida na adversidade, <span className="text-[#f5c518]">forjada no propósito</span>
+            </h2>
+            <div className="space-y-5 text-white/80 text-lg leading-relaxed">
+              <p>
+                A Fefy's nasceu na pandemia, quando o emprego foi embora mas a vontade de fazer algo gostoso ficou! Peguei minha bandeja de brownies veganos e fui vender dentro dos biarticulados nos horários de pico — sim, no aperto mesmo, literalmente kkk.
+              </p>
+              <p>
+                Do ônibus para parceiros, das feiras veganas para a sua mesa: cada passo foi uma aposta no poder da comida de verdade. Criei a marca com muita fé, dedicação e uma pitada de ousadia!
+              </p>
+              <p>
+                Nossos produtos não são "diet" nem sem graça — <span className="text-[#f5c518] font-black">são veganos e incrivelmente gostosos</span>, porque a gente acredita que respeitar o planeta não precisa custar o sabor. Se chegou até aqui, confia na Fefy! 🌱
+              </p>
+            </div>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <div className="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-center">
+                <p className="text-3xl font-black text-[#f5c518]">100%</p>
+                <p className="text-white/60 text-sm font-bold">Vegano</p>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-center">
+                <p className="text-3xl font-black text-[#16a34a]">9+</p>
+                <p className="text-white/60 text-sm font-bold">Produtos</p>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-center">
+                <p className="text-3xl font-black text-[#6b21a8]">⭐ 5</p>
+                <p className="text-white/60 text-sm font-bold">Avaliação</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="h-3 bg-[#16a34a]" />
+    </>
+  )
+
+}
+
+
 function App() {
   return (
     <div className="min-h-screen bg-white font-sans">
       <Header />
       <Hero />
+      <Valores/>
       <Produtos />
       <ComoFunciona/>
+      <NossaHistoria/>
     </div>
   )
 }
