@@ -191,12 +191,23 @@ function Hero() {
           </a>
         </div>
       </div>
-      <div className="bg-[#6b21a8]/20 rounded-3xl h-[420px] flex items-center justify-center border-4 border-[#f5c518]/20">
-          <div className="text-center">
-            <div className="text-7xl mb-4">🌱</div>
-            
+      
+      <div className="relative hidden md:block">
+            <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-[#f5c518]/40 h-[420px]">
+              <img
+                src={brownieCoco}
+                alt="Brownies proteicos da Fefy's"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-4 -left-6 bg-[#6b21a8] text-white rounded-2xl px-5 py-3 shadow-xl z-20 font-bold text-sm">
+              🎉 Opção sem trigo disponível!
+            </div>
+            <div className="absolute -top-4 -right-4 bg-[#f5c518] text-[#1a0a2e] rounded-2xl px-5 py-3 shadow-xl z-20 font-black text-sm">
+              ⭐ 5 estrelas
+            </div>
           </div>
-        </div>
+        
 
     </section>
   )
