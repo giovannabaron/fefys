@@ -101,6 +101,12 @@ const valores = [
   }
 ];
 
+const testimonials = [
+  { name: "Ana Paula", text: "Os brownies são incríveis! Não dá pra acreditar que é vegano!", stars: 5 },
+  { name: "Mariana S.", text: "O creme de pistache é viciante demais. Já fiz meu terceiro pedido!", stars: 5 },
+  { name: "Carlos R.", text: "Golden Milk todo dia pela manhã. Mudou minha rotina completamente!", stars: 5 }
+]
+
 
  function Header() {
   return (
@@ -195,7 +201,7 @@ function Hero() {
       <div className="relative hidden md:block">
             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-[#f5c518]/40 h-[420px]">
               <img
-                src={brownieCoco}
+                src={brownieChocolate}
                 alt="Brownies proteicos da Fefy's"
                 className="w-full h-full object-cover"
               />
@@ -469,6 +475,117 @@ function NossaHistoria(){
 
 }
 
+function Depoimentos() {
+  return (
+    <section className="py-20 px-6 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-black text-[#1a0a2e]">
+            O que nossos clientes <span className="text-[#f5c518]">dizem</span>
+          </h2>
+        </div>
+        <div className="grid grid-cols-3 gap-6">
+          {testimonials.map((t, i) => (
+            <div key={i} className="bg-[#1a0a2e] rounded-3xl p-7 text-white">
+              <div className="flex gap-1 mb-4">
+                {Array.from({ length: t.stars }).map((_, s) => (
+                  <Star key={s} className="w-4 h-4 fill-[#f5c518] text-[#f5c518]" />
+                ))}
+              </div>
+              <p className="text-white/80 mb-5 leading-relaxed italic">"{t.text}"</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#6b21a8] flex items-center justify-center font-black text-sm">
+                  {t.name[0]}
+                </div>
+                <span className="font-bold">{t.name}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Contato() {
+  return (
+    <section id="contato" className="py-24 px-6 bg-[#6b21a8] relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-[#f5c518]/20 blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-[#16a34a]/20 blur-3xl" />
+      <div className="relative max-w-4xl mx-auto text-center">
+        <span className="inline-block bg-[#f5c518] text-[#1a0a2e] text-xs font-black uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+          Faça seu Pedido
+        </span>
+        <h2 className="text-4xl font-black text-white mb-6">
+          Coma bem, sem culpa nenhuma!
+        </h2>
+        <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl mx-auto">
+          Faça seu pedido agora pelo WhatsApp e receba delícias veganas fresquinhas, nutritivas e absurdamente gostosas!
+        </p>
+        
+         <a href={WHATSAPP}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex bg-[#f5c518] text-[#1a0a2e] px-10 py-5 rounded-full font-black text-xl hover:bg-[#e6b800] transition-all hover:scale-105 shadow-2xl items-center gap-3"
+        >
+          <MessageCircle className="w-6 h-6" />
+          Pedir pelo WhatsApp
+        </a>
+      </div>
+    </section>
+  )
+}
+
+function BotaoWhatsApp() {
+  return (
+    
+      <a
+      href={WHATSAPP}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-full shadow-2xl hover:scale-110 transition-all z-50 flex items-center justify-center group"
+      aria-label="Fazer encomenda pelo WhatsApp"
+    >
+      <svg className="w-9 h-9" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 0C7.164 0 0 7.164 0 16c0 2.825.738 5.481 2.031 7.781L0 32l8.438-2.094A15.925 15.925 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.25A13.2 13.2 0 019.125 27.5l-.531-.313-5.5 1.375 1.438-5.313-.344-.563A13.2 13.2 0 012.75 16 13.25 13.25 0 0116 2.75 13.25 13.25 0 0129.25 16 13.25 13.25 0 0116 29.25zm7.25-9.563c-.394-.2-2.344-1.156-2.719-1.281-.375-.125-.625-.188-.906.188-.25.375-1 1.281-1.219 1.531-.219.25-.438.281-.813.094-.375-.188-1.625-.594-3.094-1.906-1.125-1-1.906-2.25-2.125-2.625-.219-.375-.031-.594.156-.781.188-.156.406-.406.594-.594.188-.188.25-.344.375-.594.125-.25.063-.469-.031-.656-.094-.188-.875-2.125-1.188-2.906-.313-.75-.625-.656-.875-.656-.219 0-.469-.031-.719-.031-.25 0-.656.094-1.031.469-.375.375-1.438 1.406-1.438 3.438s1.469 3.969 1.656 4.219c.188.25 2.625 4.031 6.375 5.625.906.375 1.594.594 2.125.75.875.281 1.688.25 2.344.156.719-.094 2.219-.906 2.531-1.781.313-.875.313-1.625.219-1.781-.094-.125-.344-.219-.719-.375z"/>
+      </svg>
+      <span className="absolute bottom-full right-0 mb-3 px-4 py-2 bg-[#1a0a2e] text-white text-sm font-bold rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+        Faça sua encomenda agora
+      </span>
+    </a>
+  )
+}
+
+function Footer() {
+  return (
+    <footer className="py-14 px-6 bg-[#1a0a2e] text-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-3 gap-10 mb-10">
+          <div>
+            <h3 className="text-2xl font-black text-[#f5c518] mb-1">Fefy's</h3>
+            <p className="text-[#16a34a] font-bold text-sm uppercase tracking-widest mb-4">Alimentação Inclusiva</p>
+            <p className="text-white/60 leading-relaxed text-sm">
+              Comida vegana artesanal feita com amor. Coma sem culpa, viva com sabor.
+            </p>
+          </div>
+          <div>
+            <h4 className="font-black text-[#f5c518] mb-5 uppercase tracking-wide text-sm">Contato</h4>
+            <p className="text-white/70 mb-2 text-sm">fefys.alimentacao.inclusiva@gmail.com</p>
+            <p className="text-white/70 text-sm">(41) 98799-7556</p>
+          </div>
+          <div>
+            <h4 className="font-black text-[#f5c518] mb-5 uppercase tracking-wide text-sm">Horário</h4>
+            <p className="text-white/70 mb-2 text-sm">Segunda a Sábado</p>
+            <p className="text-white/70 text-sm">11h às 21h</p>
+          </div>
+        </div>
+        <div className="pt-8 border-t border-white/10 text-center text-white/40 text-sm">
+          <p>© 2026 Fefy's - Alimentação Inclusiva. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+  )
+}
 
 function App() {
   return (
@@ -479,6 +596,10 @@ function App() {
       <Produtos />
       <ComoFunciona/>
       <NossaHistoria/>
+      <Depoimentos/>
+      <Contato />
+      <BotaoWhatsApp />
+      <Footer />
     </div>
   )
 }
