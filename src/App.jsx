@@ -6,6 +6,7 @@ import browniePistache from './assets/browniePistache.jpeg'
 import cremeAvela from './assets/cremeAvela.jpeg'
 import cremePistache from './assets/cremePistache.jpeg'
 import goldenMilk from './assets/goldenMilk.jpeg'
+import fefy from './assets/fefy.jpeg'
 import { Cookie, Star, Package, Truck, MessageCircle, ChevronRight, Leaf, Heart, ShoppingBag} from 'lucide-react'
 
 const WHATSAPP = "https://wa.me/5541987997556"
@@ -425,7 +426,11 @@ function NossaHistoria(){
             <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-[#f5c518]/30 aspect-[4/5] bg-[#6b21a8]/20 flex items-center justify-center">
               <div className="text-center">
                 <div className="text-7xl mb-4">👩‍🍳</div>
-                <p className="text-white/60 font-bold">Foto em breve</p>
+                <img
+                src={fefy}
+                alt="Fefy's"
+                className="w-full h-full object-cover"
+              />
               </div>
             </div>
             <div className="absolute -bottom-6 -right-6 bg-[#f5c518] text-[#1a0a2e] rounded-2xl p-5 shadow-2xl max-w-[200px]">
