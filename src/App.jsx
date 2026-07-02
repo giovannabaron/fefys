@@ -7,7 +7,9 @@ import cremeAvela from './assets/cremeAvela.jpeg'
 import cremePistache from './assets/cremePistache.jpeg'
 import goldenMilk from './assets/goldenMilk.jpeg'
 import fefy from './assets/fefy.jpeg'
-import { Cookie, Star, Package, Truck, MessageCircle, ChevronRight, Leaf, Heart, ShoppingBag} from 'lucide-react'
+import useEmblaCarousel from 'embla-carousel-react'
+import { useState, useEffect } from 'react'
+import { Cookie, Star, Package, Truck, MessageCircle, ChevronRight, Leaf, Heart, ShoppingBag, ChevronLeft } from 'lucide-react'
 
 const WHATSAPP = "https://wa.me/5541987997556"
 
@@ -112,9 +114,9 @@ const testimonials = [
  function Header() {
   return (
     <header className="sticky top-0 bg-[#f0fdf4] border-b-2 border-[#16a34a]/20 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto pl-2 pr-6 py-4 flex items-center justify-between">
           
-          <div className="w-14 h-14 rounded-2xl overflow-hidden ring-2 ring-[#6b21a8]/20 shadow-md flex-shrink-0">
+          <div className="w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-[#6b21a8]/20 shadow-md flex-shrink-0">
             <img
             src={logo}
             alt="Logo Fefy's"
@@ -222,7 +224,7 @@ function Hero() {
 
 function ProductCard({ title, description, image, price, badge, badgeColor }) {
   return (
-    <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-[#6b21a8]/10 hover:shadow-xl transition-shadow">
+    <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-[#6b21a8]/10 hover:shadow-xl transition-shadow h-full flex flex-col">
       <div className="h-64 bg-[#1a0a2e]/5 relative">
         {image ? (
           <img src={image} alt={title} className="w-full h-full object-cover" />
@@ -235,9 +237,9 @@ function ProductCard({ title, description, image, price, badge, badgeColor }) {
           {badge}
         </span>
       </div>
-      <div className="p-5">
+      <div className="p-5 flex flex-col flex-1">
         <h3 className="font-black text-[#1a0a2e] text-lg mb-1">{title}</h3>
-        <p className="text-sm text-gray-500 mb-4 leading-relaxed">{description}</p>
+        <p className="text-sm text-gray-500 mb-4 leading-relaxed line-clamp-3 flex-1">{description}</p>
         <div className="flex items-center justify-between">
           <span className="text-2xl font-black text-[#6b21a8]">{price}</span>
           <a href={WHATSAPP} className="bg-[#f5c518] text-[#1a0a2e] px-4 py-2 rounded-full text-sm font-black hover:bg-[#e6b800]">
@@ -245,6 +247,60 @@ function ProductCard({ title, description, image, price, badge, badgeColor }) {
           </a>
         </div>
       </div>
+    </div>
+  )
+}
+
+function Carrossel({ itens }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false })
+  const [podePrev, setPodePrev] = useState(false)
+  const [podeNext, setPodeNext] = useState(true)
+
+  const scrollPrev = () => emblaApi && emblaApi.scrollPrev()
+  const scrollNext = () => emblaApi && emblaApi.scrollNext()
+
+  useEffect(() => {
+    if (!emblaApi) return
+
+    const atualizar = () => {
+      setPodePrev(emblaApi.canScrollPrev())
+      setPodeNext(emblaApi.canScrollNext())
+    }
+
+    emblaApi.on('select', atualizar)
+    emblaApi.on('reInit', atualizar)
+    atualizar()
+  }, [emblaApi])
+
+  return (
+    <div className="relative">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex gap-6 items-stretch">
+  {itens.map((p, i) => (
+    <div key={i} className="flex-none w-[320px] flex">
+      <ProductCard {...p} />
+    </div>
+  ))}
+</div>
+      </div>
+
+      {podePrev && (
+        <button
+          onClick={scrollPrev}
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 bg-white border border-[#6b21a8]/20 shadow-lg rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#f5c518] transition-colors"
+        >
+          <ChevronLeft className="w-5 h-5 text-[#1a0a2e]" />
+        </button>
+      )}
+
+      {podeNext && (
+        <button
+          onClick={scrollNext}
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 bg-white border border-[#6b21a8]/20 shadow-lg rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#f5c518] transition-colors"
+        >
+          <ChevronRight className="w-5 h-5 text-[#1a0a2e]" />
+        </button>
+      )}
     </div>
   )
 }
@@ -268,35 +324,27 @@ function Produtos() {
           </div>
 
           <div className="mb-14">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="bg-[#f5c518] p-2 rounded-xl">
-                <Cookie className="w-5 h-5 text-[#1a0a2e]" />
-              </div>
-              <h3 className="text-2xl font-black text-[#1a0a2e]">
-                Brownies Proteicos
-              </h3>
-              <span className="bg-[#16a34a]/10 text-[#16a34a] text-xs font-black px-3 py-1 rounded-full">
-                Com ou Sem Trigo
-              </span>
-            </div>
-            <div className="grid grid-cols-3 gap-6">
-              {brownies.map((p, i) => <ProductCard key={i} {...p} />)}
-            </div>
-          </div>
+  <div className="flex items-center gap-3 mb-8">
+    <div className="bg-[#f5c518] p-2 rounded-xl">
+      <Cookie className="w-5 h-5 text-[#1a0a2e]" />
+    </div>
+    <h3 className="text-2xl font-black text-[#1a0a2e]">Brownies Proteicos</h3>
+    <span className="bg-[#16a34a]/10 text-[#16a34a] text-xs font-black px-3 py-1 rounded-full">
+      Com ou Sem Trigo
+    </span>
+  </div>
+  <Carrossel itens={brownies} />
+</div>
 
-          <div>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="bg-[#f5c518] p-2 rounded-xl">
-                <Star className="w-5 h-5 text-[#1a0a2e]" />
-              </div>
-              <h3 className="text-2xl font-black text-[#1a0a2e]">
-                Cremes e Golden Milk
-              </h3>
-            </div>
-            <div className="grid grid-cols-3 gap-6">
-              {cremes.map((p, i) => <ProductCard key={i} {...p} />)}
-            </div>
-          </div>
+<div>
+  <div className="flex items-center gap-3 mb-8">
+    <div className="bg-[#6b21a8] p-2 rounded-xl">
+      <Star className="w-5 h-5 text-white" />
+    </div>
+    <h3 className="text-2xl font-black text-[#1a0a2e]">Cremes e Golden Milk</h3>
+  </div>
+  <Carrossel itens={cremes} />
+</div>
 
         </div>
       </section>
@@ -423,16 +471,17 @@ function NossaHistoria(){
 
          <div className="relative max-w-7xl mx-auto grid grid-cols-2 gap-16 items-center">
           <div className="relative">
-            <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-[#f5c518]/30 aspect-[4/5] bg-[#6b21a8]/20 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-7xl mb-4">👩‍🍳</div>
-                <img
-                src={fefy}
-                alt="Fefy's"
-                className="w-full h-full object-cover"
-              />
-              </div>
-            </div>
+            <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-[#f5c518]/30 aspect-[4/5]">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-[#f5c518]/30 aspect-[4/5]">
+          
+          <img
+           src={fefy}
+          alt="Fefy's"
+          className="w-full h-full object-cover"
+          />
+          </div>
+          </div>
+      
             <div className="absolute -bottom-6 -right-6 bg-[#f5c518] text-[#1a0a2e] rounded-2xl p-5 shadow-2xl max-w-[200px]">
               <p className="font-black text-3xl leading-none">+6</p>
               <p className="font-bold text-sm mt-1">anos transformando vidas com comida de verdade</p>
