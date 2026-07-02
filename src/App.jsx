@@ -112,41 +112,51 @@ const testimonials = [
 
 
  function Header() {
+  const [menuAberto, setMenuAberto] = useState(false)
+
   return (
     <header className="sticky top-0 bg-[#f0fdf4] border-b-2 border-[#16a34a]/20 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto pl-2 pr-6 py-4 flex items-center justify-between">
-          
-          <div className="w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-[#6b21a8]/20 shadow-md flex-shrink-0">
-            <img
-            src={logo}
-            alt="Logo Fefy's"
-            className="w-full h-full object-cover"
-            />
-          </div>
+      <div className="max-w-7xl mx-auto pl-2 pr-6 py-4 flex items-center justify-between">
 
-      <nav className="flex gap-6 items-center">
-        <a href="#produtos" className="text-sm font-bold text-gray-700 hover:text-green-700">
-          PRODUTOS
-        </a>
-        <a href="#comofunciona" className="text-sm font-bold text-gray-700 hover:text-green-700">
-          COMO FUNCIONA
-        </a>
-        <a href="#nossahistoria" className="text-sm font-bold text-gray-700 hover:text-green-700">
-          NOSSA HISTÓRIA
-        </a>
-        <a href="#contato" className="text-sm font-bold text-gray-700 hover:text-green-700">
-          CONTATO
-        </a>
-        
-         <a
-         href={WHATSAPP}
-            className="bg-[#f5c518] text-[#1a0a2e] px-4 py-2 rounded-full text-sm font-bold hover:bg-[#e6b800]"
-          >
+        <div className="w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-[#6b21a8]/20 shadow-md flex-shrink-0">
+          <img src={logo} alt="Logo Fefy's" className="w-full h-full object-cover" />
+        </div>
+
+        <nav className="hidden md:flex gap-6 items-center">
+          <a href="#produtos" className="text-sm font-bold text-gray-700 hover:text-[#6b21a8]">PRODUTOS</a>
+          <a href="#comofunciona" className="text-sm font-bold text-gray-700 hover:text-[#6b21a8]">COMO FUNCIONA</a>
+          <a href="#nossahistoria" className="text-sm font-bold text-gray-700 hover:text-[#6b21a8]">NOSSA HISTÓRIA</a>
+          <a href="#contato" className="text-sm font-bold text-gray-700 hover:text-[#6b21a8]">CONTATO</a>
+          <a href={WHATSAPP} className="bg-[#f5c518] text-[#1a0a2e] px-4 py-2 rounded-full text-sm font-bold hover:bg-[#e6b800]">
             Pedir agora
           </a>
         </nav>
 
+        <button
+          className="md:hidden text-[#1a0a2e]"
+          onClick={() => setMenuAberto(!menuAberto)}
+        >
+          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {menuAberto
+              ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            }
+          </svg>
+        </button>
+
       </div>
+
+      {menuAberto && (
+        <div className="md:hidden px-6 pb-4 flex flex-col gap-4 bg-[#f0fdf4] border-t border-[#16a34a]/20">
+          <a href="#produtos" onClick={() => setMenuAberto(false)} className="text-[#1a0a2e] font-bold">PRODUTOS</a>
+          <a href="#comofunciona" onClick={() => setMenuAberto(false)} className="text-[#1a0a2e] font-bold">COMO FUNCIONA</a>
+          <a href="#nossahistoria" onClick={() => setMenuAberto(false)} className="text-[#1a0a2e] font-bold">NOSSA HISTÓRIA</a>
+          <a href="#contato" onClick={() => setMenuAberto(false)} className="text-[#1a0a2e] font-bold">CONTATO</a>
+          <a href={WHATSAPP} className="bg-[#f5c518] text-[#1a0a2e] text-center px-5 py-2 rounded-full font-black">
+            Pedir agora
+          </a>
+        </div>
+      )}
     </header>
   )
 }
